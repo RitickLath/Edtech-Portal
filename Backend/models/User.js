@@ -25,12 +25,7 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       maxLength: [30, "Password cannot exceed 30 characters"],
     },
-    phoneNumber: {
-      type: String,
-      // required: [true, "Phone number is required"],
-      trim: true,
-      maxLength: [20, "Phone number cannot exceed 20 characters"],
-    },
+    
     role: {
       type: String,
       enum: ["Student", "Instructor", "Admin"],

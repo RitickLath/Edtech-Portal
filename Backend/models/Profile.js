@@ -15,7 +15,12 @@ const profileSchema = new mongoose.Schema(
     photo: {
       type: String,
     },
-
+    phoneNumber: {
+      type: String,
+      // required: [true, "Phone number is required"],
+      trim: true,
+      maxLength: [20, "Phone number cannot exceed 20 characters"],
+    },
     // little complex
     socialLinks: {
       github: {
