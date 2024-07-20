@@ -17,18 +17,19 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
       trim: true,
+      unique: [true, "Email ID already exists"],
       maxLength: [35, "Email cannot exceed 50 characters"],
-    },
-    phoneNumber: {
-      type: String,
-      required: [true, "Phone number is required"],
-      trim: true,
-      maxLength: [20, "Phone number cannot exceed 20 characters"],
     },
     password: {
       type: String,
       required: [true, "Password is required"],
       maxLength: [30, "Password cannot exceed 30 characters"],
+    },
+    phoneNumber: {
+      type: String,
+      // required: [true, "Phone number is required"],
+      trim: true,
+      maxLength: [20, "Phone number cannot exceed 20 characters"],
     },
     role: {
       type: String,
