@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
   {
@@ -17,15 +18,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
       trim: true,
-      unique: [true, "Email ID already exists"],
+      unique: true,
       maxLength: [35, "Email cannot exceed 50 characters"],
     },
     password: {
       type: String,
       required: [true, "Password is required"],
-      maxLength: [30, "Password cannot exceed 30 characters"],
     },
-    
+
     role: {
       type: String,
       enum: ["Student", "Instructor", "Admin"],
@@ -52,5 +52,18 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+userSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    try {
+      this.password = await bcrypt.hash(this.password, 10);
+      next();
+    } catch (e) {
+      next(e);
+    }
+  } else {
+    next();
+  }
+});
 
 module.exports = mongoose.model("User", userSchema);

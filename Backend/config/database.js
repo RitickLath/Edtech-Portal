@@ -4,7 +4,7 @@ exports.connect = () => {
   try {
     mongoose
       .connect(
-        "mongodb+srv://ritick943lath:W3aKtysX3OTVHNS0@cluster0.vufpblw.mongodb.net/"
+        "mongodb+srv://ritick943lath:W3aKtysX3OTVHNS0@cluster0.vufpblw.mongodb.net/EdtechPortal"
       )
       .then(() => {
         console.log("MongoDB connected successfullty");
