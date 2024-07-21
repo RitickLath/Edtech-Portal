@@ -5,10 +5,11 @@ const AdminRouter = require("./routes/AdminRoute");
 const InstructorRouter = require("./routes/InstructorRoute");
 const StudentRouter = require("./routes/StudentRoute");
 const { connect } = require("./config/database");
+const cors = require("cors");
 
 require("dotenv").config();
 connect();
-
+app.use(cors());
 app.use(express.json());
 
 // routes
