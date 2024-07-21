@@ -15,6 +15,7 @@ exports.signup = async (req, res) => {
   // Validate inputs based on above structure
   const result = userSchema.safeParse(req.body);
   if (!result.success) {
+    console.log(req.body);
     return res.status(400).json({
       success: false,
       message: `Invalid Inputs: ${JSON.stringify(result.error.format())}`,

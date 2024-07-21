@@ -7,7 +7,7 @@ exports.connect = () => {
         "mongodb+srv://ritick943lath:W3aKtysX3OTVHNS0@cluster0.vufpblw.mongodb.net/EdtechPortal"
       )
       .then(() => {
-        console.log("MongoDB connected successfullty");
+        console.log("MongoDB connected successfully");
       })
       .catch((e) => {
         console.log("Error Occured while connecting with mongoose");
