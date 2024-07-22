@@ -7,3 +7,15 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.bluebg {
+  background: #161d29;
+}
+
+.lightText {
+  color: #dbddea;
+}
+
+.textDark {
+  color: #6e727f;
+}
