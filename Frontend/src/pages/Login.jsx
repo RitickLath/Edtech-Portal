@@ -17,7 +17,7 @@ const Login = () => {
     if (isAuthenticated) {
       navigate("/dashboard");
     }
-  }, [navigate, isAuthenticated]);
+  }, [isAuthenticated]);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -25,7 +25,6 @@ const Login = () => {
     setLoading(true);
     setError("");
     setSuccess("");
-    console.log("call");
     try {
       const response = await axios.post("http://localhost:3000/api/v1/login", {
         email,
@@ -37,7 +36,7 @@ const Login = () => {
       if (response?.data?.success) {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
         setSuccess(response?.data?.message || "Sign in successful");
-        navigate("/dashboard");
+        setIsAuthenticated(true);
       } else {
         setSuccess(
           response?.data?.message || "Invalid Input or Internal Server Error"

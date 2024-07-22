@@ -17,7 +17,7 @@ const Navbar = ({ dynamic = "My Learning" }) => {
           <Link>{dynamic}</Link>
           <Link to="contact">Contact Us</Link>
         </div>
-        {isAuthenticated && (
+        {!isAuthenticated && (
           <div className="flex justify-between space-x-4">
             <button
               onClick={() => {

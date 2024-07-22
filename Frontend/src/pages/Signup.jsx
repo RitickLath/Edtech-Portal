@@ -50,7 +50,6 @@ const Signup = () => {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
         setSuccess(response?.data?.message || "Sign up successful");
         setIsAuthenticated(true);
-        navigate("/dashboard");
       } else {
         setSuccess(
           response?.data?.message || "Invalid Input or Internal Server Error"
