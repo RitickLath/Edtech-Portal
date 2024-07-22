@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
 
 const Navbar = ({ dynamic = "My Learning" }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  // const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (
@@ -14,24 +17,26 @@ const Navbar = ({ dynamic = "My Learning" }) => {
           <Link>{dynamic}</Link>
           <Link to="contact">Contact Us</Link>
         </div>
-        <div className="flex justify-between space-x-4">
-          <button
-            onClick={() => {
-              navigate("/login");
-            }}
-            className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
-          >
-            Log in
-          </button>
-          <button
-            onClick={() => {
-              navigate("/signup");
-            }}
-            className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
-          >
-            Sign up
-          </button>
-        </div>
+        {isAuthenticated && (
+          <div className="flex justify-between space-x-4">
+            <button
+              onClick={() => {
+                navigate("/login");
+              }}
+              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+            >
+              Log in
+            </button>
+            <button
+              onClick={() => {
+                navigate("/signup");
+              }}
+              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+            >
+              Sign up
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
