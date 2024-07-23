@@ -6,6 +6,12 @@ const Dashboard = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/signup");
+  //   }
+  // }, []);
+
   return <div>Dashboard</div>;
 };
 

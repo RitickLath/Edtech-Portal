@@ -1,0 +1,187 @@
+import React, { useState } from "react";
+import {
+  IoCloudUploadOutline,
+  IoEyeOffOutline,
+  IoEyeOutline,
+  IoTrashBinSharp,
+} from "react-icons/io5";
+
+const Settings = () => {
+  const [firstName, setFirstName] = useState("Abhinav");
+  const [lastName, setLastName] = useState("Sharma");
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("Male");
+  const [contactNumber, setContactNumber] = useState("");
+  const [about, setAbout] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
+  return (
+    <div className="w-full bg-[#000814] px-12 py-16 text-white">
+      <h1 className="text-3xl sm:text-4xl font-semibold">Edit Profile</h1>
+
+      <div className="flex flex-col gap-6 mt-12 items-center w-full">
+        {/* Profile picture */}
+        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+          <h1 className="mb-3 font-semibold text-lg">Change Profile Picture</h1>
+          <button className="text-lg font-semibold mr-6 px-4 py-1 rounded-md bg-[#2C333F]">
+            Select
+          </button>
+          <button className="bg-[#FFD60A] text-black text-lg font-semibold mr-6 px-4 py-1 rounded-md">
+            <div className="flex items-center space-x-2">
+              <h1>Upload</h1>
+              <IoCloudUploadOutline className="text-xl font-bold" />
+            </div>
+          </button>
+        </div>
+
+        {/* Profile Information */}
+        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+          <h1 className="mb-3 font-semibold text-lg">Profile Information</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label className="mb-1">First Name</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1">Last Name</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1">Date of Birth</label>
+              <input
+                type="text"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+                placeholder="dd-mm-yyyy"
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1">Gender</label>
+              <select
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1">Contact Number</label>
+              <input
+                type="text"
+                value={contactNumber}
+                onChange={(e) => setContactNumber(e.target.value)}
+                placeholder="Enter Contact Number"
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="mb-1">About</label>
+              <textarea
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+                placeholder="Enter Bio Details"
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+
+              {/* save cancle button */}
+              <div className="flex justify-end gap-4 mt-6 font-semibold">
+                <button className="bg-gray-600 text-white px-4 py-2 rounded-md">
+                  Cancel
+                </button>
+                <button className="bg-[#FFD60A] text-black px-4 py-2 rounded-md">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Password */}
+        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+          <h1 className="mb-3 font-semibold text-lg">Password</h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col relative">
+              <label className="mb-1">Current Password</label>
+              <input
+                type={showCurrentPassword ? "text" : "password"}
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                placeholder="Enter Current Password"
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+              <button
+                onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                className="absolute right-3 top-10 text-xl"
+              >
+                {showCurrentPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+              </button>
+            </div>
+            <div className="flex flex-col relative">
+              <label className="mb-1">New Password</label>
+              <input
+                type={showNewPassword ? "text" : "password"}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Enter New Password"
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+              <button
+                onClick={() => setShowNewPassword(!showNewPassword)}
+                className="absolute right-3 top-10 text-xl"
+              >
+                {showNewPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
+              </button>
+            </div>
+          </div>
+          <div className="flex justify-end gap-4 mt-6">
+            <button className="bg-gray-600 text-white px-4 py-2 rounded-md">
+              Cancel
+            </button>
+            <button className="bg-[#FFD60A] text-black px-4 py-2 rounded-md">
+              Update
+            </button>
+          </div>
+        </div>
+
+        {/* Delete Account */}
+        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#610316] opacity-70 border-[#691432] border-[1px] rounded-md">
+          <div className="flex space-x-6 items-center">
+            <IoTrashBinSharp className="text-[120px] opacity-100 bg-[#691432] text-red-400 px-2 rounded-full" />
+            <div>
+              <h1 className="mb-3 font-semibold text-lg text-white">
+                Delete Account
+              </h1>
+              <p className="mb-4 lg:w-[60%]">
+                Would you like to delete your account? This account may contain
+                Paid Courses. Deleting your account is permanent and will remove
+                all the content associated with it.
+              </p>
+              <button className="font-semibold text-red-400 italic">
+                I want to delete my account.
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Settings;

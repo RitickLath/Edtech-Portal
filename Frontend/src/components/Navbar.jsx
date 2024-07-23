@@ -8,7 +8,7 @@ const Navbar = ({ dynamic = "My Learning" }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-14 bg-[#161D29] text-[#DBDDEA]">
+    <div className="w-full h-14 bg-[#161D29] text-[#DBDDEA] fixed z-[100]">
       <div className="flex justify-between h-full items-center px-6 sm:px-12 md:px-20 text-lg ">
         <div>EduBridge</div>
         <div className="hidden sm:flex justify-between space-x-4 lg:space-x-8">
