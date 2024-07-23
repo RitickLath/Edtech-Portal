@@ -42,7 +42,7 @@ const MainLayout = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             {/* Dashboard */}
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Profile />} />
             <Route path="/dashboard/profile" element={<Profile />} />
             <Route path="/dashboard/course" element={<Course />} />
             <Route path="/dashboard/cart" element={<Cart />} />

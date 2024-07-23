@@ -25,12 +25,29 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
-
     role: {
       type: String,
       enum: ["Student", "Instructor", "Admin"],
       default: "Student",
     },
+
+    // otp verification
+
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+
+    otpCreatedAt: {
+      type: Date,
+
+    },
+
+    otp: {
+      type: String,
+    },
+
+    // profile
     profile: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Profile",
@@ -54,6 +71,9 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
+
+
+
   if (this.isModified("password")) {
     try {
       this.password = await bcrypt.hash(this.password, 10);

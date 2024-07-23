@@ -1,6 +1,10 @@
 const { z } = require("zod");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const otpGenerator = require("otp-generator");
+const { main } = require("../utils/sendEmail");
+const { userEmail, to, subject, text, html } = require("../utils/constant");
+const bcrypt = require("bcrypt");
 
 exports.signup = async (req, res) => {
   // Defined structure of inputs
@@ -35,6 +39,11 @@ exports.signup = async (req, res) => {
       });
     }
 
+    // generate otp and hash it
+    let otp = otpGenerator.generate(6, { digits: true });
+    const otpSend = otp;
+    otp = await bcrypt.hash(otp, 10);
+
     // Create new user
     const newUser = await User.create({
       firstName,
@@ -42,14 +51,25 @@ exports.signup = async (req, res) => {
       password,
       email,
       role,
+      otpCreatedAt: Date.now(),
+      otp,
     });
 
+    //console.log(otpSend);
     // Fetch the user details
     req.userId = newUser._id;
 
     // Generate JWT token
     const payload = { userId: newUser._id };
     const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "30d" });
+
+    // send email with the otp and the email of the user
+    main(
+      "edubridge121@gmail.com",
+      email,
+      "EduBridge Email Verification",
+      `Dear User thanks for signing up with Edubridge! To Complete your registraction, please verify your email address using the following One-Time Password (OTP): ${otpSend}`
+    );
 
     return res.status(200).json({
       success: true,

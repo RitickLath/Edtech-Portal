@@ -3,9 +3,7 @@ const mongoose = require("mongoose");
 exports.connect = () => {
   try {
     mongoose
-      .connect(
-        "mongodb+srv://ritick943lath:W3aKtysX3OTVHNS0@cluster0.vufpblw.mongodb.net/EdtechPortal"
-      )
+      .connect(process.env.DB_URL)
       .then(() => {
         console.log("MongoDB connected successfully");
       })
