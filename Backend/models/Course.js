@@ -9,9 +9,9 @@ const courseSchema = new mongoose.Schema(
     },
     courseName: {
       type: String,
-      required: [true, "Course Name is must"],
-      unique: [true, "Course with same name already exixts"],
-      maxLength: [100, "Course Name cannot exceeds 100 characters"],
+      required: [true, "Course Name is required"],
+      unique: [true, "Course with the same name already exists"],
+      maxLength: [100, "Course Name cannot exceed 100 characters"],
     },
     price: {
       type: Number,
@@ -39,3 +39,5 @@ const courseSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model("Course", courseSchema);

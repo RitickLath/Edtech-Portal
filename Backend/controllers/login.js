@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
     
     const payload = { userId };
     req.userId = userId;
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" }); // Token expiration time can be adjusted
+    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: "1h" });
 
     return res.status(200).json({
       success: true,

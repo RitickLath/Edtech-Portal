@@ -5,7 +5,6 @@ exports.authentication = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    // token must starts with "Bearer "
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res
         .status(401)
@@ -30,6 +29,7 @@ exports.authentication = async (req, res, next) => {
     }
 
     req.userId = user._id;
+
     next();
   } catch (error) {
     console.error(error);

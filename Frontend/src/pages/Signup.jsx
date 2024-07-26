@@ -17,11 +17,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
-    }
-  }, [isAuthenticated, navigate]);
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +32,7 @@ const Signup = () => {
     }
 
     try {
+      
       const response = await axios.post("http://localhost:3000/api/v1/signup", {
         firstName,
         lastName,
@@ -48,15 +44,15 @@ const Signup = () => {
       // Store token in local storage
       if (response?.data?.success) {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
+
         setSuccess(response?.data?.message || "Sign up successful");
-        setIsAuthenticated(true);
+        navigate("/verification");
       } else {
         setSuccess(
           response?.data?.message || "Invalid Input or Internal Server Error"
         );
       }
     } catch (err) {
-      setIsAuthenticated(false);
       setError(err.response?.data?.message || "An error occurred.");
     } finally {
       setLoading(false);

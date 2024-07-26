@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { IoMdCreate } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
@@ -17,19 +18,11 @@ const Profile = () => {
               AS
             </div>
             <div>
-              <h2 className="text-xl font-semibold">Abhinav Sharma</h2>
-              <p className="text-gray-400">abhinavsharma6209@gmail.com</p>
+              <h2 className="text-xl font-semibold">Ritick Lath</h2>
+              <p className="text-gray-400">Email</p>
             </div>
           </div>
         </div>
-        <button
-          onClick={() => {
-            navigate("/dashboard/settings");
-          }}
-          className="bg-[#FFD60A] font-semibold text-black px-4 py-2 rounded-md flex items-center space-x-2"
-        >
-          <span>Edit</span> <IoMdCreate />
-        </button>
 
         {/* About Section */}
         <div className="w-[90%] flex items-center justify-between bg-[#161D29] p-6 py-12 rounded-md">

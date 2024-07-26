@@ -1,12 +1,18 @@
-import React from "react";
-import DashboardSidebar from "../sections/DashboardSidebar";
+import React, { useContext, useEffect } from "react";
+import { AuthContext } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
-  return (
-    <div>
-      <DashboardSidebar />
-    </div>
-  );
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     navigate("/signup");
+  //   }
+  // }, []);
+
+  return <div>About</div>;
 };
 
 export default About;

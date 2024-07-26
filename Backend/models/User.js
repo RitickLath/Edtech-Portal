@@ -40,30 +40,23 @@ const userSchema = new mongoose.Schema(
 
     otpCreatedAt: {
       type: Date,
-
     },
 
     otp: {
       type: String,
     },
-
-    // profile
     profile: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Profile",
+      ref: "Profiles",
     },
-    enrolledCourses: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
-      },
-    ],
-    coursesSelling: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Course",
-      },
-    ],
+    enrolledCourses: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Courses",
+    },
+    coursesSelling: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+    },
   },
   {
     timestamps: true,
@@ -71,9 +64,6 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", async function (next) {
-
-
-
   if (this.isModified("password")) {
     try {
       this.password = await bcrypt.hash(this.password, 10);

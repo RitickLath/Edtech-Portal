@@ -10,14 +10,14 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/dashboard");
+    if (localStorage.getItem("token")) {
+      navigate("/");
     }
-  }, [isAuthenticated]);
+  }, []);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -31,12 +31,11 @@ const Login = () => {
         password,
       });
 
-      // Store token in local storage
-
       if (response?.data?.success) {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
+
         setSuccess(response?.data?.message || "Sign in successful");
-        setIsAuthenticated(true);
+        navigate("/dashboard");
       } else {
         setSuccess(
           response?.data?.message || "Invalid Input or Internal Server Error"
@@ -65,6 +64,7 @@ const Login = () => {
           </h3>
           <form onSubmit={handleSubmit}>
             <InputBox
+              id="1"
               label="Email Address"
               placeholder="Enter Email Address"
               value={email}
@@ -72,6 +72,7 @@ const Login = () => {
               type="email"
             />
             <InputBox
+              id="2"
               label="Password"
               placeholder="Enter Password"
               value={password}

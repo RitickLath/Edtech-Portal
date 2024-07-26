@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   IoCloudUploadOutline,
   IoEyeOffOutline,
   IoEyeOutline,
   IoTrashBinSharp,
 } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
   const [firstName, setFirstName] = useState("Abhinav");
@@ -17,6 +19,7 @@ const Settings = () => {
   const [newPassword, setNewPassword] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="w-full bg-[#000814] px-12 py-16 text-white">

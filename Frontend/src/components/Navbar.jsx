@@ -1,10 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import axios from "axios";
 
 const Navbar = ({ dynamic = "My Learning" }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  //const { isAuthenticated } = useContext(AuthContext);
   // const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    //console.log("token", token);
+
+    if (token) {
+      const response = axios
+        .get("http://localhost:3000/api/v1/userDetails", {
+          headers: {
+            authorization: `${token}`,
+          },
+        })
+        .then((response) => {
+          console.log("true");
+          setAuthenticated(true);
+        })
+        .catch((e) => {
+          console.log("User not verified! Please signup", e);
+          setAuthenticated(false);
+        });
+    } else {
+      console.log("No token found! Please login");
+    }
+  }, []);
+
   const navigate = useNavigate();
 
   return (
@@ -17,7 +44,7 @@ const Navbar = ({ dynamic = "My Learning" }) => {
           <Link>{dynamic}</Link>
           <Link to="contact">Contact Us</Link>
         </div>
-        {!isAuthenticated && (
+        {!authenticated ? (
           <div className="flex justify-between space-x-4">
             <button
               onClick={() => {
@@ -34,6 +61,17 @@ const Navbar = ({ dynamic = "My Learning" }) => {
               className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
             >
               Sign up
+            </button>
+          </div>
+        ) : (
+          <div className="flex justify-between space-x-4">
+            <button
+              onClick={() => {
+                navigate("/dashboard");
+              }}
+              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+            >
+              Dashboard
             </button>
           </div>
         )}

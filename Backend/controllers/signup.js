@@ -5,6 +5,7 @@ const otpGenerator = require("otp-generator");
 const { main } = require("../utils/sendEmail");
 const { userEmail, to, subject, text, html } = require("../utils/constant");
 const bcrypt = require("bcrypt");
+const Profile = require("../models/Profile");
 
 exports.signup = async (req, res) => {
   // Defined structure of inputs
@@ -40,7 +41,12 @@ exports.signup = async (req, res) => {
     }
 
     // generate otp and hash it
-    let otp = otpGenerator.generate(6, { digits: true });
+    let otp = otpGenerator.generate(6, {
+      digits: true,
+      upperCaseAlphabets: false,
+      specialChars: false,
+      lowerCaseAlphabets: false,
+    });
     const otpSend = otp;
     otp = await bcrypt.hash(otp, 10);
 
@@ -55,7 +61,6 @@ exports.signup = async (req, res) => {
       otp,
     });
 
-    //console.log(otpSend);
     // Fetch the user details
     req.userId = newUser._id;
 

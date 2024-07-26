@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 exports.verification = async (req, res) => {
+  // console.log("hey");
   try {
     // fetch otp
     const { otp } = req.body;
