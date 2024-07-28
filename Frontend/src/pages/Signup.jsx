@@ -32,7 +32,6 @@ const Signup = () => {
     }
 
     try {
-      
       const response = await axios.post("http://localhost:3000/api/v1/signup", {
         firstName,
         lastName,
@@ -46,6 +45,7 @@ const Signup = () => {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
 
         setSuccess(response?.data?.message || "Sign up successful");
+        localStorage.setItem("role", role);
         navigate("/verification");
       } else {
         setSuccess(
@@ -79,6 +79,31 @@ const Signup = () => {
             </h3>
             {/* Form */}
             <form onSubmit={handleSubmit}>
+              {/* Role Selector */}
+              <div className="flex mb-4">
+                <button
+                  type="button"
+                  className={`py-2 px-4 rounded-md ${
+                    role === "Student"
+                      ? "bg-yellow-500 text-black"
+                      : "bg-gray-700 text-white"
+                  }`}
+                  onClick={() => setRole("Student")}
+                >
+                  Student
+                </button>
+                <button
+                  type="button"
+                  className={`py-2 px-4 rounded-md ${
+                    role === "Instructor"
+                      ? "bg-yellow-500 text-black"
+                      : "bg-gray-700 text-white"
+                  }`}
+                  onClick={() => setRole("Instructor")}
+                >
+                  Instructor
+                </button>
+              </div>
               <div className="flex justify-between space-x-2 sm:space-x-0">
                 <InputBox
                   label="First Name"

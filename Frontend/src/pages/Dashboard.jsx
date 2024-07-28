@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import DashboardSidebar from "../sections/DashboardSidebar";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -8,9 +8,9 @@ import Settings from "./Settings";
 import Cart from "./Cart";
 
 const Dashboard = () => {
-  console.log("hey");
   const navigate = useNavigate();
   const location = useLocation();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -25,7 +25,7 @@ const Dashboard = () => {
         })
         .then((response) => {
           console.log("Passed");
-          console.log(response.data);
+          setData(response.data.data);
         })
         .catch((e) => {
           console.log("User not verified! Please signup", e);
@@ -47,9 +47,10 @@ const Dashboard = () => {
   return (
     <div className="flex space-x-[80px] sm:space-x-[200px]">
       <DashboardSidebar />
-      {profile && <Profile />}
-      {course && <Course />}
-      {settings && <Settings />}
+      {profile && <Profile data={data} setData={setData} />}
+      {course && localStorage.getItem("role") == "Student" && <Course />}
+      {course && localStorage.getItem("Instructor") == "Student" && <Course />}
+      {settings && <Settings data={data} setData={setData} />}
       {cart && <Cart />}
     </div>
   );

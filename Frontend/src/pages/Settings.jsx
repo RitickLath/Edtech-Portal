@@ -8,18 +8,42 @@ import {
 } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-const Settings = () => {
+const Settings = ({ data, setData }) => {
   const [firstName, setFirstName] = useState("Abhinav");
   const [lastName, setLastName] = useState("Sharma");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("Male");
   const [contactNumber, setContactNumber] = useState("");
   const [about, setAbout] = useState("");
+  const [location, setLocation] = useState("");
+  const [bio, setbio] = useState("");
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const navigate = useNavigate();
+
+  const updateDetails = () => {
+    const response = axios
+      .post("http://localhost:3000/api/v1/update", {
+        firstName,
+        lastName,
+        dob,
+        gender,
+        contactNumber,
+        about,
+        location,
+        bio,
+        email: data?.email,
+      })
+      .then((res) => {
+        setData(response.data.user);
+      })
+      .catch((e) => {
+        console.log("Error Occured");
+      });
+  };
 
   return (
     <div className="w-full bg-[#000814] px-12 py-16 text-white">
@@ -44,38 +68,44 @@ const Settings = () => {
         <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
           <h1 className="mb-3 font-semibold text-lg">Profile Information</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* first Name */}
             <div className="flex flex-col">
               <label className="mb-1">First Name</label>
               <input
                 type="text"
-                value={firstName}
+                placeholder={data?.firstName || ""}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
             </div>
+
+            {/* Last Name */}
             <div className="flex flex-col">
               <label className="mb-1">Last Name</label>
               <input
                 type="text"
-                value={lastName}
+                placeholder={data?.lastName || ""}
                 onChange={(e) => setLastName(e.target.value)}
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
             </div>
+
+            {/* Contact NUmber */}
             <div className="flex flex-col">
-              <label className="mb-1">Date of Birth</label>
+              <label className="mb-1">Contact Number</label>
               <input
                 type="text"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                placeholder="dd-mm-yyyy"
+                placeholder={data?.phoneNumber || "Enter Contact Number"}
+                onChange={(e) => setContactNumber(e.target.value)}
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
             </div>
+
+            {/* Gender */}
             <div className="flex flex-col">
               <label className="mb-1">Gender</label>
               <select
-                value={gender}
+                placeholder={data?.gender || "Gender"}
                 onChange={(e) => setGender(e.target.value)}
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               >
@@ -84,31 +114,61 @@ const Settings = () => {
                 <option value="Other">Other</option>
               </select>
             </div>
+
+            {/* Location */}
             <div className="flex flex-col">
-              <label className="mb-1">Contact Number</label>
+              <label className="mb-1">Location</label>
               <input
                 type="text"
-                value={contactNumber}
-                onChange={(e) => setContactNumber(e.target.value)}
-                placeholder="Enter Contact Number"
+                placeholder={data?.location || "Enter Your Location"}
+                onChange={(e) => setLocation(e.target.value)}
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
             </div>
+
+            {/* date of birth */}
+            <div className="flex flex-col">
+              <label className="mb-1">Date of Birth</label>
+              <input
+                type="text"
+                placeholder={data?.DOB || "dd-mm-yyyy"}
+                onChange={(e) => setDob(e.target.value)}
+                className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+              />
+            </div>
+
+            {/* About */}
             <div className="flex flex-col">
               <label className="mb-1">About</label>
               <textarea
-                value={about}
+                placeholder={data?.headline || "Enter Headline"}
                 onChange={(e) => setAbout(e.target.value)}
-                placeholder="Enter Bio Details"
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
+            </div>
 
+            <div>
+              {/* bio */}
+              <div className="flex flex-col">
+                <label className="mb-1">Bio</label>
+                <input
+                  type="text"
+                  placeholder={data?.bio || "Enter your bio"}
+                  onChange={(e) => setbio(e.target.value)}
+                  className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
+                />
+              </div>
               {/* save cancle button */}
               <div className="flex justify-end gap-4 mt-6 font-semibold">
                 <button className="bg-gray-600 text-white px-4 py-2 rounded-md">
                   Cancel
                 </button>
-                <button className="bg-[#FFD60A] text-black px-4 py-2 rounded-md">
+                <button
+                  onClick={() => {
+                    updateDetails();
+                  }}
+                  className="bg-[#FFD60A] text-black px-4 py-2 rounded-md"
+                >
                   Save
                 </button>
               </div>
@@ -124,9 +184,8 @@ const Settings = () => {
               <label className="mb-1">Current Password</label>
               <input
                 type={showCurrentPassword ? "text" : "password"}
-                value={currentPassword}
+                placeholder={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder="Enter Current Password"
                 className="px-4 py-2 bg-[#2C333F] text-white rounded-md"
               />
               <button

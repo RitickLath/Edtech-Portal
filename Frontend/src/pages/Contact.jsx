@@ -61,7 +61,7 @@ const Contact = () => {
         />
       </div>
       {/* Right */}
-      <div className="mt-20 lg:w-[60%] lg:mt-0 p-6 lg:p-12 rounded-md border-2">
+      <div className="mt-20 lg:w-[60%] lg:mt-0 p-6 lg:p-12 rounded-md border-[1px] border-[#32313D]">
         <div>
           <h1 className="text-3xl font-bold pb-3">
             Have an Idea? We've got the skills. <br /> Let's team up!

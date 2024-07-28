@@ -1,85 +1,55 @@
-import axios from "axios";
+// Profile.js
 import React, { useEffect } from "react";
-import { IoMdCreate } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const Profile = () => {
-  const navigate = useNavigate();
+import { IoMdCreate } from "react-icons/io";
 
+const Profile = ({ data, setData }) => {
+  useEffect(() => {}, [data]);
   return (
     <div className="w-full bg-[#000814] px-12 py-16 text-white">
       <h1 className="text-3xl sm:text-4xl font-semibold">My Profile</h1>
 
       <div className="mt-8 space-y-6">
         {/* Profile Header */}
-        <div className="w-[90%] flex items-center justify-between bg-[#161D29] p-6 py-12 rounded-md">
-          <div className="flex items-center space-x-4">
-            <div className="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-semibold">
-              AS
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold">Ritick Lath</h2>
-              <p className="text-gray-400">Email</p>
+        <ProfileSection>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-semibold">
+                AS
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold">
+                  {data?.firstName + " " + data?.lastName}
+                </h2>
+                <p className="text-gray-400">{data?.email}</p>
+              </div>
             </div>
           </div>
-        </div>
+        </ProfileSection>
 
         {/* About Section */}
-        <div className="w-[90%] flex items-center justify-between bg-[#161D29] p-6 py-12 rounded-md">
-          <div>
-            <h2 className="text-lg font-semibold">About</h2>
-            <p className="text-gray-400">Write Something About Yourself</p>
-          </div>
-        </div>
-        <button
-          onClick={() => {
-            navigate("/dashboard/settings");
-          }}
-          className="bg-[#FFD60A] font-semibold text-black px-4 py-2 rounded-md flex items-center space-x-2"
-        >
-          <span>Edit</span> <IoMdCreate />
-        </button>
+        <ProfileSection title="About">
+          <p className="text-gray-400">
+            {data?.bio || "Write Something About Yourself"}
+          </p>
+        </ProfileSection>
+        <EditButton path="/dashboard/settings" />
 
         {/* Personal Details Section */}
-        <div className="w-[90%] bg-[#161D29] p-6 rounded-md">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Personal Details</h2>
-            <button
-              onClick={() => {
-                navigate("/dashboard/settings");
-              }}
-              className="bg-[#FFD60A] font-semibold text-black px-4 py-2 rounded-md flex items-center space-x-2"
-            >
-              <span>Edit</span> <IoMdCreate />
-            </button>
+        <ProfileSection title="Personal Details">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            <ProfileField label="First Name" value={data?.firstName} />
+            <ProfileField label="Last Name" value={data?.lastName} />
+            <ProfileField label="Email" value={data?.email} />
+            <ProfileField label="Phone Number" value={data?.phoneNumber} />
+            <ProfileField label="Gender" value={data?.gender} />
+            <ProfileField label="Location" value={data?.location} />
+            <ProfileField label="Date Of Birth" value={data?.DOB} />
+            <ProfileField label="Headline" value={data?.headline} />
+            <ProfileField label="Bio" value={data?.bio} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h3 className="text-md font-semibold ">First Name</h3>
-              <p className="text-gray-400">Abhinav</p>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold">Last Name</h3>
-              <p className="text-gray-400">Sharma</p>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold">Email</h3>
-              <p className="text-gray-400">abhinavsharma6209@gmail.com</p>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold">Phone Number</h3>
-              <p className="text-gray-400">Add Contact Number</p>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold">Gender</h3>
-              <p className="text-gray-400">Add Gender</p>
-            </div>
-            <div>
-              <h3 className="text-md font-semibold">Date Of Birth</h3>
-              <p className="text-gray-400">January 1, 1970</p>
-            </div>
-          </div>
-        </div>
+        </ProfileSection>
       </div>
     </div>
   );
@@ -87,18 +57,38 @@ const Profile = () => {
 
 export default Profile;
 
-// local storage se user ka id nikalunga
-// profile wala api me call maarunga
-// data ko user ka fill kaeunga
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+// EditButton.js
+const EditButton = ({ path }) => {
+  const navigate = useNavigate();
+
+  return (
+    <button
+      onClick={() => navigate(path)}
+      className="bg-[#FFD60A] font-semibold text-black px-4 py-2 rounded-md flex items-center space-x-2"
+    >
+      <span>Edit</span> <IoMdCreate />
+    </button>
+  );
+};
+
+// ProfileSection.js
+
+const ProfileSection = ({ title, children }) => {
+  return (
+    <div className="w-[90%] bg-[#161D29] p-6 py-12 rounded-md">
+      {title && <h2 className="text-3xl font-semibold">{title}</h2>}
+      {children}
+    </div>
+  );
+};
+
+// ProfileField.js
+
+const ProfileField = ({ label, value }) => {
+  return (
+    <div>
+      <h3 className="text-md font-semibold">{label}</h3>
+      <p className="text-gray-400">{value || `Add ${label}`}</p>
+    </div>
+  );
+};

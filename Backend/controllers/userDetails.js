@@ -8,7 +8,6 @@ exports.userDetails = async (req, res) => {
   }
   try {
     const user = await User.findById(req.userId)
-      .populate("profile")
       .lean()
       .select("-password")
       .select("-otp")

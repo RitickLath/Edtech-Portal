@@ -40,7 +40,6 @@ const Verification = () => {
       );
 
       if (response.data.success) {
-        // console.log("OTP Verified!");
         navigate("/dashboard");
       } else {
         console.log("Invalid OTP!");

@@ -47,26 +47,32 @@ const DashboardSidebar = () => {
         <h2>
           <PiStudentBold className="text-xl" />
         </h2>
-        <h2 className="hidden sm:flex">Enrolled Courses</h2>
+        <h2 className="hidden sm:flex">
+          {localStorage.getItem("role") == "Student"
+            ? "Enrolled Courses"
+            : "My Courses"}
+        </h2>
       </button>
 
       {/* BUTTON-3 */}
-      <button
-        onClick={() => {
-          setActiveDiv(3);
-          navigate("/dashboard/cart");
-        }}
-        className={`w-full flex space-x-2 items-center py-2 px-6 text-[#646975] hover:text-[#dbddea] ${
-          ActiveDiv === 3
-            ? "bg-[#3D2A01] text-[#FFD60A] hover:text-[#FFD60A] border-l-2 border-[#FFD60A]"
-            : ""
-        }`}
-      >
-        <h2>
-          <FaCartPlus className="text-xl" />
-        </h2>
-        <h2 className="hidden sm:flex">Cart</h2>
-      </button>
+      {localStorage.getItem("role") == "Student" && (
+        <button
+          onClick={() => {
+            setActiveDiv(3);
+            navigate("/dashboard/cart");
+          }}
+          className={`w-full flex space-x-2 items-center py-2 px-6 text-[#646975] hover:text-[#dbddea] ${
+            ActiveDiv === 3
+              ? "bg-[#3D2A01] text-[#FFD60A] hover:text-[#FFD60A] border-l-2 border-[#FFD60A]"
+              : ""
+          }`}
+        >
+          <h2>
+            <FaCartPlus className="text-xl" />
+          </h2>
+          <h2 className="hidden sm:flex">Cart</h2>
+        </button>
+      )}
 
       {/* BUTTON-4 */}
       <button
@@ -90,6 +96,9 @@ const DashboardSidebar = () => {
       <button
         onClick={() => {
           setActiveDiv(5);
+          localStorage.removeItem("token");
+          localStorage.removeItem("role");
+          navigate("/");
         }}
         className={`w-full flex space-x-2 items-center py-2 px-6 text-[#646975] hover:text-[#dbddea] ${
           ActiveDiv === 5

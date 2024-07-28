@@ -33,6 +33,7 @@ const Login = () => {
 
       if (response?.data?.success) {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
+        localStorage.setItem("role", response?.data?.role);
 
         setSuccess(response?.data?.message || "Sign in successful");
         navigate("/dashboard");

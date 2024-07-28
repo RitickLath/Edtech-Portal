@@ -1,41 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
-import axios from "axios";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 const Navbar = ({ dynamic = "My Learning" }) => {
-  //const { isAuthenticated } = useContext(AuthContext);
-  // const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  const [authenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    //console.log("token", token);
-
-    if (token) {
-      const response = axios
-        .get("http://localhost:3000/api/v1/userDetails", {
-          headers: {
-            authorization: `${token}`,
-          },
-        })
-        .then((response) => {
-          console.log("true");
-          setAuthenticated(true);
-        })
-        .catch((e) => {
-          console.log("User not verified! Please signup", e);
-          setAuthenticated(false);
-        });
-    } else {
-      console.log("No token found! Please login");
-    }
-  }, []);
-
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-14 bg-[#161D29] text-[#DBDDEA] fixed z-[100]">
+    <div className="w-full h-14 bg-[#000814] text-[#DBDDEA] fixed z-[100] border-b-[1px] border-[#32313D]">
       <div className="flex justify-between h-full items-center px-6 sm:px-12 md:px-20 text-lg ">
         <div>EduBridge</div>
         <div className="hidden sm:flex justify-between space-x-4 lg:space-x-8">
@@ -44,13 +15,13 @@ const Navbar = ({ dynamic = "My Learning" }) => {
           <Link>{dynamic}</Link>
           <Link to="contact">Contact Us</Link>
         </div>
-        {!authenticated ? (
+        {!localStorage.getItem("token") ? (
           <div className="flex justify-between space-x-4">
             <button
               onClick={() => {
                 navigate("/login");
               }}
-              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+              className="bg-[#32313D] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
             >
               Log in
             </button>
@@ -58,7 +29,7 @@ const Navbar = ({ dynamic = "My Learning" }) => {
               onClick={() => {
                 navigate("/signup");
               }}
-              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+              className="bg-[#32313D] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
             >
               Sign up
             </button>
@@ -69,9 +40,12 @@ const Navbar = ({ dynamic = "My Learning" }) => {
               onClick={() => {
                 navigate("/dashboard");
               }}
-              className="border-[1px] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
+              className="bg-[#32313D] px-3 py-[1px] rounded-md shadow-md hover:transform transition-transform duration-200 ease-in-out hover:scale-95"
             >
-              Dashboard
+              <div className="flex space-x-2 items-center">
+                <MdOutlineDashboardCustomize className="text-xl" />
+                <h1>Profile</h1>
+              </div>
             </button>
           </div>
         )}
