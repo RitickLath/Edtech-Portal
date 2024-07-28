@@ -8,34 +8,27 @@ const User = require("../models/User");
 const { userDetails } = require("../controllers/userDetails");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const { courses } = require("../controllers/courses");
 
-router.get("/userDetails", authentication, userDetails);
-
+// USER SIGNUP
 router.post("/signup", signup);
 
-router.post("/verfication", authentication, verification);
+// OTP VERIFICATION
+router.post("/verfication", verification);
 
+// USER LOGIN
 router.post("/login", login);
 
+// CONTACT US
 router.post("/contact", contact);
 
-router.post("/dashboard", authentication, async (req, res) => {
-  try {
-    if (!req.userId) {
-      res.status(400).json({ success: false, message: "User Not verified" });
-    }
-    const user = await User.findById(req.userId);
-    if (user.isVerified) {
-      return res.status(200).json({ success: true, message: "User verfied" });
-    }
-  } catch (e) {
-    console.log("Error occured while verification", e);
-    return res
-      .status(500)
-      .json({ success: false, message: "Error Occured while verification" });
-  }
-});
+// GET ALL COURSES
+router.get("/courses", courses);
 
+// GET ALL THE DETAILS OF USER (PERSONAL DETAILS, COURSES BOUGHT/COURSES SELLING)
+router.get("/userDetails", userDetails);
+
+// UPDATE PERSONAL INFORMATION
 router.post("/update", async (req, res) => {
   // get data
   try {

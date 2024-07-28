@@ -1,4 +1,5 @@
 const { z } = require("zod");
+const { main } = require("../utils/sendEmail");
 
 exports.contact = async (req, res) => {
   // schema for validating the contact form data
@@ -22,14 +23,13 @@ exports.contact = async (req, res) => {
   const { firstName, lastName, email, phone, message } = req.body;
 
   try {
-    // Example: sending an email (this is just a placeholder, implementation needed)
-    // await sendEmail({
-    //   to: email,
-    //   subject: "Contact Form Submission",
-    //   text: `Hello ${firstName},\n\nYour message has been received. We will get back to you soon.\n\nMessage: ${message}`
-    // });
+    await main(
+      email,
+      "EduBridge",
+      "Thank you for reaching out to EduBridge! We have received your inquiry and our team will get back to you as soon as possible.",
+      "We appreciate your interest in EduBridge and look forward to assisting you. Sooner an executive will contact you from our side"
+    );
 
-    // Return a 200 status code for success
     return res.status(200).json({
       success: true,
       message: "Message received! We will get back to you soon.",

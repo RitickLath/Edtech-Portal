@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new mongoose.Schema(
+const InstructorSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -28,25 +28,9 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["Student", "Instructor", "Admin"],
-      default: "Student",
+      default: "Instructor",
     },
 
-    // otp verification
-
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
-
-    otpCreatedAt: {
-      type: Date,
-    },
-
-    otp: {
-      type: String,
-    },
-
-    // Profile schema
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
@@ -79,14 +63,16 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
 
-    // Enrolled course
-    enrolledCourses: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Courses",
+    // otp verification
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
-    coursesSelling: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Course",
+    otpCreatedAt: {
+      type: Date,
+    },
+    otp: {
+      type: String,
     },
   },
   {
@@ -94,7 +80,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.pre("save", async function (next) {
+InstructorSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     try {
       this.password = await bcrypt.hash(this.password, 10);
@@ -107,4 +93,4 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Instructor", InstructorSchema);
