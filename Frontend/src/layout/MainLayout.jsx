@@ -36,6 +36,7 @@ const MainLayout = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/profile" element={<Dashboard />} />
           <Route path="/dashboard/course" element={<Dashboard />} />
+          <Route path="/dashboard/course/add-course" element={<Dashboard />} />
           <Route path="/dashboard/settings" element={<Dashboard />} />
           <Route path="/dashboard/cart" element={<Dashboard />} />
         </Routes>

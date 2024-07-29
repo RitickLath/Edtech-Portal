@@ -6,6 +6,8 @@ import Profile from "./Profile";
 import Course from "./Course";
 import Settings from "./Settings";
 import Cart from "./Cart";
+import CreateCourse from "./CreateCourse";
+import AddCourse from "./AddCourse";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -41,13 +43,17 @@ const Dashboard = () => {
   const course = location.pathname === "/dashboard/course";
   const settings = location.pathname === "/dashboard/settings";
   const cart = location.pathname === "/dashboard/cart";
+  const addCourse = location.pathname === "/dashboard/course/add-course";
 
   return (
     <div className="flex space-x-[80px] sm:space-x-[200px]">
       <DashboardSidebar />
       {profile && <Profile data={data} setData={setData} />}
       {course && localStorage.getItem("role") == "Student" && <Course />}
-      {course && localStorage.getItem("Instructor") == "Student" && <Course />}
+      {course && localStorage.getItem("role") == "Instructor" && (
+        <CreateCourse />
+      )}
+      {addCourse && <AddCourse />}
       {settings && <Settings data={data} setData={setData} />}
       {cart && <Cart />}
     </div>
