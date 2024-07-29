@@ -14,18 +14,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    //console.log("token", token);
+    const role = localStorage.getItem("role");
 
     if (token) {
       const response = axios
         .get("http://localhost:3000/api/v1/userDetails", {
-          headers: {
-            authorization: `${token}`,
-          },
+          headers: { Authorization: `${token} ${role}` },
         })
         .then((response) => {
           console.log("Passed");
-          setData(response.data.data);
+          setData(response.data.user);
         })
         .catch((e) => {
           console.log("User not verified! Please signup", e);
@@ -35,7 +33,7 @@ const Dashboard = () => {
       console.log("No token found! Please login");
       navigate("/login");
     }
-  }, []);
+  }, [navigate]);
 
   const profile =
     location.pathname === "/dashboard" ||

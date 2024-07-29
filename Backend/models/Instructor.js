@@ -57,7 +57,7 @@ const InstructorSchema = new mongoose.Schema(
     bio: {
       type: String,
       trim: true,
-      maxLength: [200, "bio cannot exceed 200 characters"],
+      maxLength: [2000, "bio cannot exceed 2000 characters"],
     },
     photo: {
       type: String,

@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
 const Student = require("../models/Student");
 const Instructor = require("../models/Instructor");
 const Course = require("../models/Course");
@@ -8,8 +7,8 @@ exports.userDetails = async (req, res) => {
   try {
     // BASIC AUTHENTICATION
     const authHeader = req.headers.authorization;
-    const { role } = req.body;
-
+    const role = authHeader.split(" ")[2];
+    console.log(role + " " + authHeader);
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res
         .status(401)
@@ -17,11 +16,13 @@ exports.userDetails = async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
+    console.log(token);
     let decoded;
 
     // TOKEN VERIFICATION
     try {
       decoded = jwt.verify(token, process.env.SECRET);
+      console.log(decoded);
     } catch (error) {
       return res
         .status(401)

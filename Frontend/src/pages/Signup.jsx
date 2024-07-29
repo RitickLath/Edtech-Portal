@@ -15,7 +15,6 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -43,9 +42,10 @@ const Signup = () => {
       // Store token in local storage
       if (response?.data?.success) {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
-
+        localStorage.setItem("role", response?.data?.role);
+        localStorage.setItem("id", response?.data?.id);
+        
         setSuccess(response?.data?.message || "Sign up successful");
-        localStorage.setItem("role", role);
         navigate("/verification");
       } else {
         setSuccess(

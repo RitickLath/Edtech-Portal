@@ -6,13 +6,6 @@ const Verification = () => {
   const [otp, setOtp] = useState(new Array(6).fill(""));
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/signup");
-    }
-  }, [navigate]);
-
   const handleChange = (element, index) => {
     // if (isNaN(element.value)) return false;
     setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
@@ -25,24 +18,23 @@ const Verification = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const token = otp.join("");
+    const submittedOtp = otp.join("");
 
     // Replace the URL with your API endpoint
     try {
       const response = await axios.post(
         "http://localhost:3000/api/v1/verfication",
-        { otp: token },
         {
-          headers: {
-            authorization: `${localStorage.getItem("token")}`,
-          },
+          otp: submittedOtp,
+          id: localStorage.getItem("id"),
+          role: localStorage.getItem("role"),
         }
       );
 
       if (response.data.success) {
         navigate("/dashboard");
       } else {
-        console.log("Invalid OTP!");
+        alert("Invalid OTP!");
       }
     } catch (error) {
       console.error("Error verifying OTP:", error);

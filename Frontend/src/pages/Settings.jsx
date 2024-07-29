@@ -9,10 +9,10 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Settings = ({ data, setData }) => {
-  const [firstName, setFirstName] = useState("Abhinav");
-  const [lastName, setLastName] = useState("Sharma");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("Male");
+  const [gender, setGender] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [about, setAbout] = useState("");
   const [location, setLocation] = useState("");
@@ -36,6 +36,7 @@ const Settings = ({ data, setData }) => {
         location,
         bio,
         email: data?.email,
+        role: localStorage.getItem("role"),
       })
       .then((res) => {
         setData(response.data.user);
