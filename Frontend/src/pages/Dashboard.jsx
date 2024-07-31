@@ -25,7 +25,7 @@ const Dashboard = () => {
         })
         .then((response) => {
           console.log("Passed");
-          setData(response.data.user);
+          setData(response.data);
         })
         .catch((e) => {
           console.log("User not verified! Please signup", e);
@@ -48,10 +48,10 @@ const Dashboard = () => {
   return (
     <div className="flex space-x-[80px] sm:space-x-[200px]">
       <DashboardSidebar />
-      {profile && <Profile data={data} setData={setData} />}
+      {profile && <Profile data={data.user} setData={setData} />}
       {course && localStorage.getItem("role") == "Student" && <Course />}
       {course && localStorage.getItem("role") == "Instructor" && (
-        <CreateCourse />
+        <CreateCourse data={data} />
       )}
       {addCourse && <AddCourse />}
       {settings && <Settings data={data} setData={setData} />}

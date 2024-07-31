@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [role, setRole] = useState("Student");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const Login = () => {
       const response = await axios.post("http://localhost:3000/api/v1/login", {
         email,
         password,
+        role,
       });
 
       if (response?.data?.success) {
@@ -64,6 +66,30 @@ const Login = () => {
             Education designed for your success.
           </h3>
           <form onSubmit={handleSubmit}>
+            <div className="flex mb-4">
+              <button
+                type="button"
+                className={`py-2 px-4 rounded-md ${
+                  role === "Student"
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-700 text-white"
+                }`}
+                onClick={() => setRole("Student")}
+              >
+                Student
+              </button>
+              <button
+                type="button"
+                className={`py-2 px-4 rounded-md ${
+                  role === "Instructor"
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-700 text-white"
+                }`}
+                onClick={() => setRole("Instructor")}
+              >
+                Instructor
+              </button>
+            </div>
             <InputBox
               id="1"
               label="Email Address"

@@ -52,13 +52,13 @@ exports.signup = async (req, res) => {
     otp = await bcrypt.hash(otp, 10);
 
     // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    //const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create new user
     const newUser = await (role === "Student" ? Student : Instructor).create({
       firstName,
       lastName,
-      password: hashedPassword,
+      password,
       email,
       role,
       otpCreatedAt: Date.now(),

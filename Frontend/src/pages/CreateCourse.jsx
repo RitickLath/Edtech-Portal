@@ -1,7 +1,12 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CreateCourse = () => {
+const CreateCourse = ({ data }) => {
+  useEffect(() => {
+    console.log(data?.courses);
+  }, []);
+
   const navigate = useNavigate();
   return (
     <div className=" w-full bg-[#000814] px-12 py-16 text-white">
@@ -24,8 +29,24 @@ const CreateCourse = () => {
           <h1>PRICE</h1>
           <h1 className="hidden sm:flex">ACTIONS</h1>
         </div>
+
+        {/* fetch all course and publish it here */}
+        {data?.courses?.[0] &&
+          data?.courses?.map((e, i) => (
+            <div
+              key={i}
+              className="p-4 flex font-semibold justify-between border-b-[1px] border-[#161D29]"
+            >
+              <h1>{e?.title}</h1>
+              <h1>{e?.time}</h1>
+              <h1>{e?.price}</h1>
+              <h1 className="hidden sm:flex">ACTIONS</h1>
+            </div>
+          ))}
         <div className="flex justify-center py-12">
-          <h1 className="text-2xl font-semibold">No Course Found</h1>
+          {!data?.courses && (
+            <h1 className="text-2xl font-semibold">No Course Found</h1>
+          )}
         </div>
       </div>
     </div>

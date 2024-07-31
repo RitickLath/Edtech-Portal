@@ -8,6 +8,7 @@ const router = express.Router();
 const { getAllCourses } = require("../controllers/courses");
 
 const { update } = require("../controllers/update");
+const { courseUpdate } = require("../controllers/courseUpdate");
 
 // USER SIGNUP
 router.post("/signup", signup);
@@ -29,5 +30,8 @@ router.get("/userDetails", userDetails);
 
 // UPDATE PERSONAL INFORMATION
 router.post("/update", update);
+
+// ADD NEW COURSE
+router.post("/addCourse", courseUpdate);
 
 module.exports = router;

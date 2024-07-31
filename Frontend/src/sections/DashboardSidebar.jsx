@@ -1,16 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg"; // profile icon
 import { PiStudentBold } from "react-icons/pi"; // enrolled course icon
 import { FaCartPlus } from "react-icons/fa"; // cart
-import { IoCartOutline } from "react-icons/io5"; // cart
 import { IoSettingsOutline } from "react-icons/io5"; // settings
 import { IoLogOutOutline } from "react-icons/io5"; // logout
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DashboardSidebar = () => {
   const [ActiveDiv, setActiveDiv] = useState(1);
   const navigate = useNavigate();
+  const location = useLocation();
 
+  useEffect(() => {
+    if (location.pathname == "/dashboard") {
+      setActiveDiv(1);
+    }
+    if (location.pathname == "/dashboard/course") {
+      setActiveDiv(2);
+    }
+    if (
+      location.pathname == "/dashboard/settings" &&
+      localStorage.getItem("role") == "Instructor"
+    ) {
+      setActiveDiv(4);
+    }
+    if (
+      location.pathname == "/dashboard/settings" &&
+      localStorage.getItem("role") == "Student"
+    ) {
+      setActiveDiv(4);
+    }
+    if (location.pathname == "/dashboard/cart") {
+      setActiveDiv(3);
+    }
+  }, [location]);
   return (
     <div className="bg-[#161D29] w-[80px] sm:w-[200px] h-screen fixed">
       {/* <hr /> */}
@@ -98,6 +121,7 @@ const DashboardSidebar = () => {
           setActiveDiv(5);
           localStorage.removeItem("token");
           localStorage.removeItem("role");
+          localStorage.removeItem("id");
           navigate("/");
         }}
         className={`w-full flex space-x-2 items-center py-2 px-6 text-[#646975] hover:text-[#dbddea] ${

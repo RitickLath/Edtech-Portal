@@ -62,8 +62,6 @@ const InstructorSchema = new mongoose.Schema(
     photo: {
       type: String,
     },
-
-    // otp verification
     isVerified: {
       type: Boolean,
       default: false,

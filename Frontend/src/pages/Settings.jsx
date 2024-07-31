@@ -35,14 +35,15 @@ const Settings = ({ data, setData }) => {
         about,
         location,
         bio,
-        email: data?.email,
+        email: data?.user?.email,
         role: localStorage.getItem("role"),
       })
       .then((res) => {
-        setData(response.data.user);
+        setData(res.data.user);
+        navigate("/dashboard");
       })
       .catch((e) => {
-        console.log("Error Occured");
+        console.log("Error Occured", e);
       });
   };
 

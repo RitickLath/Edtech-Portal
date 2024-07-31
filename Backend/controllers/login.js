@@ -22,15 +22,22 @@ exports.login = async (req, res) => {
     ).findOne({ email });
 
     // Check if user exists
+    //console.log(req.body);
+    //console.log(userDetail);
     if (!userDetail) {
       return res.status(401).json({
         success: false,
         message: "Invalid email or password",
       });
     }
-
-    // Verify password
+    console.log(
+      await bcrypt.compare(
+        password,
+        "$2b$10$EwVAmJpE2yGEoYX8ZLUjH.ChsOk4Dgt/hV6gjA87JvkhbPmOYK6a2"
+      )
+    );
     const isPasswordValid = await bcrypt.compare(password, userDetail.password);
+    // console.log(isPasswordValid);
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,

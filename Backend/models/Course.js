@@ -7,22 +7,39 @@ const courseSchema = new mongoose.Schema(
       ref: "Instructor",
       required: [true, "Instructor is required"],
     },
-    courseName: {
+    title: {
       type: String,
       required: [true, "Course Name is required"],
-      unique: [true, "Course with the same name already exists"],
+      //unique: [true, "Course with the same name already exists"],
       maxLength: [100, "Course Name cannot exceed 100 characters"],
-    },
-    price: {
-      type: Number,
-      required: [true, "Must provide course price"],
     },
     description: {
       type: String,
       required: [true, "Must provide course description"],
     },
-    coursePic: {
+    price: {
+      type: Number,
+      required: [true, "Must provide course price"],
+    },
+    time: {
       type: String,
+    },
+    category: {
+      type: String,
+      required: [true, "Must provide course category"],
+    },
+    // thumbnail: {
+    //   type: String,
+    // },
+    benefits: {
+      type: String,
+      required: [true, "Must provide course benefits"],
+    },
+    prerequisite: {
+      type: [String],
+    },
+    sections: {
+      type: [String],
     },
     courseContent: [
       {
