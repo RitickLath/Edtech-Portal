@@ -1,5 +1,16 @@
 const mongoose = require("mongoose");
 
+const lectureSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+});
+
 const courseSchema = new mongoose.Schema(
   {
     instructor: {
@@ -28,9 +39,7 @@ const courseSchema = new mongoose.Schema(
       type: String,
       required: [true, "Must provide course category"],
     },
-    // thumbnail: {
-    //   type: String,
-    // },
+
     benefits: {
       type: String,
       required: [true, "Must provide course benefits"],
@@ -38,15 +47,12 @@ const courseSchema = new mongoose.Schema(
     prerequisite: {
       type: [String],
     },
-    sections: {
-      type: [String],
+    lecture: {
+      type: [lectureSchema],
     },
-    courseContent: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "MainContent",
-      },
-    ],
+    imageUrl: {
+      type: String,
+    },
     enrolledUsers: [
       {
         type: mongoose.Schema.Types.ObjectId,

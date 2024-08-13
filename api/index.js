@@ -14,6 +14,6 @@ app.use(express.json());
 app.use("/api/v1", BasicRouter);
 
 module.exports = app;
-// app.listen(3000, () => {
-//   console.log("Listening");
-// });
+app.listen(3000, () => {
+  console.log("Listening");
+});

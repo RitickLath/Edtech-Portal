@@ -8,6 +8,7 @@ const CreateCourse = ({ data }) => {
   }, []);
 
   const navigate = useNavigate();
+  
   return (
     <div className=" w-full bg-[#000814] px-12 py-16 text-white">
       {/* HEADING AND BUTTON */}

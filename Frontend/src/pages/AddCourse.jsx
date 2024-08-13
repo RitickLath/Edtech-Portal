@@ -13,8 +13,15 @@ const AddCourse = () => {
   const ref = useRef();
   const checkbox = useRef();
   const [time, setTime] = useState("");
-  const [section, setSection] = useState([]);
-  const [length, setlength] = useState(0);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const [section, setSection] = useState([
+    { section: "", lecture: [{ title: "", description: "" }] },
+  ]);
 
   const addItem = () => {
     if (ref.current.value) {
@@ -30,7 +37,26 @@ const AddCourse = () => {
   };
 
   const handleSubmit = async (e) => {
+    //e.preventDefault();
+
+    if (!selectedFile) {
+      alert("Please select a file.");
+      return;
+    }
+
     try {
+      // Upload image to Cloudinary
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("upload_preset", "edubridge"); // Replace with your Cloudinary upload preset
+
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/drgztn5ek/image/upload",
+        formData
+      );
+
+      const imageUrl = await uploadRes.data.secure_url;
+
       const response = await axios.post(
         "http://localhost:3000/api/v1/addCourse",
         {
@@ -41,8 +67,9 @@ const AddCourse = () => {
           category: courseCategory,
           benefits: courseBenefits,
           prerequisite: courseRequirements,
-          sections: section,
+          lecture: section,
           time,
+          imageUrl,
         }
       );
 
@@ -154,6 +181,12 @@ const AddCourse = () => {
               />
             </div>
 
+            {/* upload image */}
+
+            <div className="col-span-1 md:col-span-2">
+              <input type="file" onChange={handleFileChange} />
+            </div>
+
             {/* Requirements/Instructions */}
             <div className="col-span-1 md:col-span-2">
               <label className="block mb-2">Prerequisite *</label>
@@ -193,6 +226,7 @@ const AddCourse = () => {
             <div className="col-span-1 md:col-span-2 flex justify-end">
               <button
                 onClick={() => {
+                  handleSubmit();
                   setpage(2);
                 }}
                 className="bg-yellow-500 text-xl font-semibold text-black px-6 py-2 rounded"
@@ -211,8 +245,7 @@ const AddCourse = () => {
           setpage={setpage}
           section={section}
           setSection={setSection}
-          length={length}
-          setlength={setlength}
+          title={courseTitle}
         />
       )}
 

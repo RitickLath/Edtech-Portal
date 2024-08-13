@@ -11,8 +11,8 @@ exports.courseUpdate = async (req, res) => {
       category,
       benefits,
       prerequisite,
-      sections,
       time,
+      imageUrl,
     } = req.body;
 
     const user = await Instructor.findById(id);
@@ -20,6 +20,12 @@ exports.courseUpdate = async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: "User Not Found" });
+    }
+
+    const AlreadyPresent = await Course.findOne({ instructor: id, title });
+    if (AlreadyPresent) {
+      try {
+      } catch (e) {}
     }
 
     const course = await Course.create({
@@ -30,8 +36,8 @@ exports.courseUpdate = async (req, res) => {
       category,
       benefits,
       prerequisite,
-      sections,
       time,
+      imageUrl,
     });
 
     res
