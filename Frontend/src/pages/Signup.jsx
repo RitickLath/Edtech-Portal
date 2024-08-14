@@ -65,7 +65,7 @@ const Signup = () => {
       <div className="w-full h-full min-h-screen py-12 bg-[#000814] text-white md:flex md:justify-between px-6 lg:px-14">
         {/* Image div */}
         <div className="md:hidden flex justify-center mx-auto mb-12 w-full ">
-          <img className="w-[100%]" src="\public\login_mobile.webp" alt="" />
+          <img className="w-[100%]" src="\login_mobile.webp" alt="" />
         </div>
 
         {/* Input box */}
@@ -160,7 +160,7 @@ const Signup = () => {
         </div>
         {/* Image div */}
         <div className="hidden md:flex h-[500px]">
-          <img src="\public\login_desktop.webp" alt="" />
+          <img src="\login_desktop.webp" alt="" />
         </div>
       </div>
     </>
