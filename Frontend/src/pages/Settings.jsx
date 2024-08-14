@@ -49,17 +49,17 @@ const Settings = ({ data, setData }) => {
   };
 
   return (
-    <div className="w-full bg-[#000814] px-12 py-16 text-white">
+    <div className="w-full bg-[#000814] px-4 py-16 text-white">
       <h1 className="text-3xl sm:text-4xl font-semibold">Edit Profile</h1>
 
-      <div className="flex flex-col gap-6 mt-12 items-center w-full">
+      <div className="flex flex-col gap-6 mt-6 items-center w-full">
         {/* Profile picture */}
-        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+        <div className="w-[100%] lg:w-[90%] py-6 px-3 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
           <h1 className="mb-3 font-semibold text-lg">Change Profile Picture</h1>
           <button className="text-lg font-semibold mr-6 px-4 py-1 rounded-md bg-[#2C333F]">
             Select
           </button>
-          <button className="bg-[#FFD60A] text-black text-lg font-semibold mr-6 px-4 py-1 rounded-md">
+          <button className="bg-[#FFD60A] mt-3 text-black text-lg font-semibold mr-6 px-4 py-1 rounded-md">
             <div className="flex items-center space-x-2">
               <h1>Upload</h1>
               <IoCloudUploadOutline className="text-xl font-bold" />
@@ -68,7 +68,7 @@ const Settings = ({ data, setData }) => {
         </div>
 
         {/* Profile Information */}
-        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+        <div className="w-[100%] lg:w-[90%] py-6 px-3 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
           <h1 className="mb-3 font-semibold text-lg">Profile Information</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* first Name */}
@@ -180,7 +180,7 @@ const Settings = ({ data, setData }) => {
         </div>
 
         {/* Password */}
-        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
+        <div className="w-[100%] lg:w-[90%] py-6 px-3 bg-[#161D29] rounded-md border-[1px] border-[#2C333F]">
           <h1 className="mb-3 font-semibold text-lg">Password</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col relative">
@@ -226,7 +226,7 @@ const Settings = ({ data, setData }) => {
         </div>
 
         {/* Delete Account */}
-        <div className="w-[100%] lg:w-[90%] py-8 px-6 bg-[#610316] opacity-70 border-[#691432] border-[1px] rounded-md">
+        <div className="w-[100%] lg:w-[90%] py-6 px-3 bg-[#610316] opacity-70 border-[#691432] border-[1px] rounded-md">
           <div className="flex space-x-6 items-center">
             <IoTrashBinSharp className="text-[120px] opacity-100 bg-[#691432] text-red-400 px-2 rounded-full" />
             <div>

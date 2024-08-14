@@ -7,10 +7,10 @@ import { IoMdCreate } from "react-icons/io";
 const Profile = ({ data, setData }) => {
   useEffect(() => {}, [data]);
   return (
-    <div className="w-full bg-[#000814] px-12 py-16 text-white">
+    <div className="w-full bg-[#000814] px-4 py-16 text-white">
       <h1 className="text-3xl sm:text-4xl font-semibold">My Profile</h1>
 
-      <div className="mt-8 space-y-6">
+      <div className="w-full mt-8 space-y-6">
         {/* Profile Header */}
         <ProfileSection>
           <div className="flex items-center justify-between">
@@ -21,8 +21,8 @@ const Profile = ({ data, setData }) => {
               <div>
                 <h2 className="text-xl font-semibold">
                   {data?.firstName + " " + data?.lastName}
+                  <p className="text-gray-400 text-xs">{data?.email}</p>
                 </h2>
-                <p className="text-gray-400">{data?.email}</p>
               </div>
             </div>
           </div>
@@ -50,6 +50,7 @@ const Profile = ({ data, setData }) => {
             <ProfileField label="Bio" value={data?.bio} />
           </div>
         </ProfileSection>
+        <EditButton path="/dashboard/settings" />
       </div>
     </div>
   );
@@ -75,8 +76,8 @@ const EditButton = ({ path }) => {
 
 const ProfileSection = ({ title, children }) => {
   return (
-    <div className="w-[90%] bg-[#161D29] p-6 py-12 rounded-md">
-      {title && <h2 className="text-3xl font-semibold">{title}</h2>}
+    <div className="w-full bg-[#161D29] p-3 py-8 rounded-md">
+      {title && <h2 className="text-2xl sm:text-3xl font-semibold">{title}</h2>}
       {children}
     </div>
   );
@@ -88,7 +89,9 @@ const ProfileField = ({ label, value }) => {
   return (
     <div>
       <h3 className="text-md font-semibold">{label}</h3>
-      <p className="text-gray-400">{value || `Add ${label}`}</p>
+      <p className="text-gray-400 text-sm sm:text-base">
+        {value || `Add ${label}`}
+      </p>
     </div>
   );
 };
