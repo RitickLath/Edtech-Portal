@@ -33,11 +33,11 @@ const Home = () => {
           heading={heading}
         />
 
-        <div className="mt-12 w-[100%] lg:w-[80%] aspect-video">
-          <video loop autoPlay>
+        <div className="mt-12 w-[100%] lg:w-[95%]  aspect-video">
+          <video className="mx-auto" loop autoPlay control>
             <source
               type="video/mp4"
-              src="/public/vid.mp4"
+              src="/vid.mp4"
               width="100%"
               height="100%"
             />
