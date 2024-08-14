@@ -156,15 +156,27 @@ const AddCourse = () => {
                 <option disabled value="">
                   Choose a Category
                 </option>
-                <option>Python</option>
                 <option>Web Development</option>
-                <option>Android Development</option>
-                <option>Cloud Computing</option>
-                <option>Devops</option>
-                <option>Artificial Intelligence</option>
-                <option>Machine Learning</option>
-                <option>Cyber Security</option>
-                <option>Data Structure and Algorithms</option>
+                <option>Database Management</option>
+                <option>Blockchain Technology</option>
+                <option>Internet of Things (IoT)</option>
+                <option>Database Management</option>
+                <option>Software Engineering</option>
+                <option>Game Development</option>
+                <option>Augmented Reality (AR)</option>
+                <option>Virtual Reality (VR)</option>
+                <option>Big Data</option>
+                <option>Data Visualization</option>
+                <option>Networking</option>
+                <option>Digital Marketing</option>
+                <option>UI/UX Design</option>
+                <option>Business Intelligence</option>
+                <option>Project Management</option>
+                <option>Ethical Hacking</option>
+                <option>Systems Analysis</option>
+                <option>Web Scraping</option>
+                <option>Serverless Architecture</option>
+                <option>Embedded Systems</option>
               </select>
             </div>
 

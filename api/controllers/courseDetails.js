@@ -21,6 +21,7 @@ exports.courseUpdate = async (req, res) => {
         .status(404)
         .json({ success: false, message: "User Not Found" });
     }
+    const name = user.firstName + " " + user.lastName;
 
     const AlreadyPresent = await Course.findOne({ instructor: id, title });
     if (AlreadyPresent) {
@@ -38,6 +39,7 @@ exports.courseUpdate = async (req, res) => {
       prerequisite,
       time,
       imageUrl,
+      instructorName: name,
     });
 
     res

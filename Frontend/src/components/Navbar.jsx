@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 
-const Navbar = ({ dynamic = "My Learning" }) => {
+const Navbar = () => {
   const navigate = useNavigate();
 
   return (
@@ -10,10 +10,18 @@ const Navbar = ({ dynamic = "My Learning" }) => {
       <div className="flex justify-between h-full items-center px-6 sm:px-12 md:px-20 text-lg ">
         <div>EduBridge</div>
         <div className="hidden sm:flex justify-between space-x-4 lg:space-x-8">
-          <Link to="/">Home</Link>
-          <Link to="about">About Us</Link>
-          <Link>{dynamic}</Link>
-          <Link to="contact">Contact Us</Link>
+          {localStorage.getItem("role") !== "Instructor" && (
+            <Link to="/">Home</Link>
+          )}
+          {localStorage.getItem("role") !== "Instructor" && (
+            <Link to="about">About Us</Link>
+          )}
+          {localStorage.getItem("role") !== "Instructor" && (
+            <Link to="/course">Courses</Link>
+          )}
+          {localStorage.getItem("role") !== "Instructor" && (
+            <Link to="contact">Contact Us</Link>
+          )}
         </div>
         {!localStorage.getItem("token") ? (
           <div className="flex justify-between space-x-4">

@@ -10,6 +10,8 @@ import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import About from "../pages/About";
 import Verification from "../pages/Verification";
+import Course from "../pages/Course";
+import CourseInfo from "../pages/CourseInfo";
 
 const MainLayout = () => {
   const location = useLocation();
@@ -27,7 +29,9 @@ const MainLayout = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          
+          <Route path="/course" element={<Course />} />
+          <Route path="/course/:id" element={<CourseInfo />} />
+
           {/* signup, login and otp verification */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />

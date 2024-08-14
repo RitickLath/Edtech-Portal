@@ -18,6 +18,10 @@ const courseSchema = new mongoose.Schema(
       ref: "Instructor",
       required: [true, "Instructor is required"],
     },
+    instructorName: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: [true, "Course Name is required"],

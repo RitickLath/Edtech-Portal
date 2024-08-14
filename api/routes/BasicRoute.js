@@ -27,6 +27,28 @@ router.post("/contact", contact);
 // GET ALL COURSES
 router.get("/courses", getAllCourses);
 
+// GET SINGLE COURSE DETAILS USING ID
+router.get("/SingleCourse", async (req, res) => {
+  const { id } = req.query;
+  try {
+    const course = await Course.findById(id);
+    if (course) {
+      return res
+        .status(200)
+        .json({ success: true, message: "Course Details fetched", course });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "Can't get course by provided id" });
+    }
+  } catch (e) {
+    console.log("Error Occured while getting single course details", e);
+    res
+      .status(401)
+      .json({ success: false, message: "Error in getting course details", e });
+  }
+});
+
 // GET ALL THE DETAILS OF USER (PERSONAL DETAILS, COURSES BOUGHT/COURSES SELLING)
 router.get("/userDetails", userDetails);
 
@@ -56,16 +78,15 @@ router.post("/addLectures", async (req, res) => {
         .json({ success: false, message: "Course Not Found" });
     }
 
-    // If you want to replace the lecture array:
     await Course.updateOne({ _id: course._id }, { $set: { lecture: lecture } });
 
     return res.status(200).json({ success: true, message: "Lecture Added" });
   } catch (e) {
-    console.error(e); // For debugging purposes, you can log the error
+    console.error(e);
     return res.status(500).json({
       success: false,
       message: "Error occurred while adding lecture",
-      error: e.message, // Send only the error message
+      error: e.message,
     });
   }
 });
