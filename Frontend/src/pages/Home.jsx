@@ -33,14 +33,15 @@ const Home = () => {
           heading={heading}
         />
 
-        <div className="mt-12 w-[100%] aspect-video">
-          <video
-            autoPlay
-            src="https://res.cloudinary.com/drgztn5ek/video/upload/v1723647828/9049-360_pzvcgp.mp4"
-            width="100%"
-            height="100%"
-          >
-            Your browser does not support the video tag.
+        <div className="mt-12 w-[100%] lg:w-[80%] aspect-video">
+          <video loop autoPlay>
+            <source
+              type="video/mp4"
+              src="https://res.cloudinary.com/drgztn5ek/video/upload/v1723647828/9049-360_pzvcgp.mp4"
+              width="100%"
+              height="100%"
+            />
+            Sorry, your browser doesn't support videos.
           </video>
         </div>
       </div>
