@@ -50,7 +50,9 @@ const Settings = ({ data, setData }) => {
 
   return (
     <div className="w-full bg-[#000814] px-4 py-16 text-white">
-      <h1 className="text-3xl sm:text-4xl font-semibold">Edit Profile</h1>
+      <h1 className="text-3xl sm:text-4xl font-semibold lg:px-14">
+        Edit Profile
+      </h1>
 
       <div className="flex flex-col gap-6 mt-6 items-center w-full">
         {/* Profile picture */}
