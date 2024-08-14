@@ -15,7 +15,7 @@ const Catalog = () => {
   const [activebtn, setActivebtn] = useState({ index: 1, h: c1 });
 
   return (
-    <div className="w-full flex justify-center mt-12">
+    <div className="w-full flex justify-center py-12 pb-28">
       <div className="flex flex-col items-center">
         <h1 className="text-3xl sm:text-4xl font-bold">
           {Cheading}{" "}
@@ -70,13 +70,21 @@ const Catalog = () => {
         {/* Catalogs */}
         <div className="w-full mt-12 grid place-items-center gap-10 lg:grid-cols-3 md:grid-cols-2 md:gap-12 lg:gap-12">
           {activebtn.h.length > 0 && (
-            <CatalogCard h1={activebtn.h[0]} p={activebtn.h[1]} />
+            <CatalogCard active={true} h1={activebtn.h[0]} p={activebtn.h[1]} />
           )}
           {activebtn.h.length > 2 && (
-            <CatalogCard h1={activebtn.h[2]} p={activebtn.h[3]} />
+            <CatalogCard
+              active={false}
+              h1={activebtn.h[2]}
+              p={activebtn.h[3]}
+            />
           )}
           {activebtn.h.length > 4 && (
-            <CatalogCard h1={activebtn.h[4]} p={activebtn.h[5]} />
+            <CatalogCard
+              active={false}
+              h1={activebtn.h[4]}
+              p={activebtn.h[5]}
+            />
           )}
         </div>
       </div>

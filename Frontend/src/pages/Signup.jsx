@@ -62,9 +62,11 @@ const Signup = () => {
 
   return (
     <>
-      <div className="w-full h-full min-h-screen py-12 bg-[#000814] text-white md:flex md:justify-between px-10 lg:px-14">
+      <div className="w-full h-full min-h-screen py-12 bg-[#000814] text-white md:flex md:justify-between px-6 lg:px-14">
         {/* Image div */}
-        <div className="md:hidden border-2 mx-auto w-[400px] h-[400px]"></div>
+        <div className="md:hidden flex justify-center mx-auto mb-12 w-full ">
+          <img className="w-[100%]" src="\public\login_mobile.webp" alt="" />
+        </div>
 
         {/* Input box */}
         <div className="flex justify-center items-center">
@@ -157,7 +159,9 @@ const Signup = () => {
           </div>
         </div>
         {/* Image div */}
-        <div className="hidden md:flex border-2 w-[400px] h-[400px]"></div>
+        <div className="hidden md:flex h-[500px]">
+          <img src="\public\login_desktop.webp" alt="" />
+        </div>
       </div>
     </>
   );

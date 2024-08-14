@@ -22,7 +22,7 @@ import Catalog from "../sections/Catalog";
 
 const Home = () => {
   return (
-    <div className="w-full h-full mx-auto min-h-screen py-12 bg-[#000814] text-white px-10 lg:px-14">
+    <div className="w-full h-full mx-auto min-h-screen py-0 bg-[#000814] text-white px-6 lg:px-14">
       {/* HERO SECTION */}
       <div className="w- flex flex-col items-center">
         <Hero

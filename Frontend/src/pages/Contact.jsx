@@ -39,9 +39,9 @@ const Contact = () => {
   };
 
   return (
-    <div className="w-full h-full py-12 bg-[#000814] text-white lg:flex lg:justify-between space-x-4 px-4 lg:px-14">
+    <div className="w-full h-full py-12 bg-[#000814] text-white lg:flex lg:justify-between lg:space-x-4 px-4 lg:px-14">
       {/* Left */}
-      <div className="flex flex-col w-full lg:w-[40%] max-h-[350px] space-y-6 p-6 bg-[#161D29] rounded-xl">
+      <div className="flex flex-col w-full lg:w-[40%] max-h-[350px] space-y-6 p-4 bg-[#161D29] rounded-xl">
         <Help
           h={"Chat with us"}
           p1={"Our friendly team is here to help"}
@@ -59,7 +59,7 @@ const Contact = () => {
         />
       </div>
       {/* Right */}
-      <div className="mt-20 lg:w-[60%] lg:mt-0 p-6 lg:p-12 rounded-md border-[1px] border-[#32313D]">
+      <div className="mt-20 lg:w-[60%] lg:mt-0 p-4 lg:p-12 rounded-md border-[1px] border-[#32313D]">
         <div>
           <h1 className="text-3xl font-bold pb-3">
             Have an Idea? We've got the skills. <br /> Let's team up!

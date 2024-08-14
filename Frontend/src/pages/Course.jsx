@@ -25,7 +25,7 @@ const Course = () => {
   }, []);
 
   return (
-    <div className="w-full bg-[#000814] px-12 py-16 text-white">
+    <div className="w-full bg-[#000814] px-6 py-16 text-white">
       <h1 className="text-4xl font-bold mb-4">Available Courses</h1>
       <h2 className="text-xl font-semibold mb-8 text-gray-400">
         Browse our wide selection of courses

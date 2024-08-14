@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const CatalogCard = ({ h1, p }) => {
-  const [isActive, setIsActive] = useState(false);
+const CatalogCard = ({ h1, p , active}) => {
+  const [isActive, setIsActive] = useState(active);
 
   return (
     <div className="relative w-[300px] h-[300px]">

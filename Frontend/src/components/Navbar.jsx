@@ -9,7 +9,8 @@ const Navbar = () => {
     <div className="w-full h-14 bg-[#000814] text-[#DBDDEA] fixed z-[100] border-b-[1px] border-[#32313D]">
       <div className="flex justify-between h-full items-center px-6 sm:px-12 md:px-20 text-lg ">
         <div>EduBridge</div>
-        <div className="hidden sm:flex justify-between space-x-4 lg:space-x-8">
+        {/* hidden sm:flex */}
+        <div className="flex justify-between space-x-4 lg:space-x-8">
           {localStorage.getItem("role") !== "Instructor" && (
             <Link to="/">Home</Link>
           )}
