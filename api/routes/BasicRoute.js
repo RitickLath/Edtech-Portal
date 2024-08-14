@@ -27,6 +27,10 @@ router.post("/contact", contact);
 // GET ALL COURSES
 router.get("/courses", getAllCourses);
 
+router.get("/", (req, res) => {
+  res.json({ mesh: "Hello" });
+});
+
 // GET SINGLE COURSE DETAILS USING ID
 router.get("/SingleCourse", async (req, res) => {
   const { id } = req.query;
