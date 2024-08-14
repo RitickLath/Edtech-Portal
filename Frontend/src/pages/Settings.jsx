@@ -25,8 +25,9 @@ const Settings = ({ data, setData }) => {
   const navigate = useNavigate();
 
   const updateDetails = () => {
+    const api_url = import.meta.env.VITE_API_URL;
     const response = axios
-      .post("http://localhost:3000/api/v1/update", {
+      .post(`${api_url}/update`, {
         firstName,
         lastName,
         dob,

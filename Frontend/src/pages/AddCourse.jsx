@@ -56,22 +56,19 @@ const AddCourse = () => {
       );
 
       const imageUrl = await uploadRes.data.secure_url;
-
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/addCourse",
-        {
-          id: localStorage.getItem("id"),
-          title: courseTitle,
-          description: courseDescription,
-          price: coursePrice,
-          category: courseCategory,
-          benefits: courseBenefits,
-          prerequisite: courseRequirements,
-          lecture: section,
-          time,
-          imageUrl,
-        }
-      );
+      const api_url = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${api_url}/api/v1/addCourse`, {
+        id: localStorage.getItem("id"),
+        title: courseTitle,
+        description: courseDescription,
+        price: coursePrice,
+        category: courseCategory,
+        benefits: courseBenefits,
+        prerequisite: courseRequirements,
+        lecture: section,
+        time,
+        imageUrl,
+      });
 
       if (response.data.success) {
         alert("Course created successfully!");

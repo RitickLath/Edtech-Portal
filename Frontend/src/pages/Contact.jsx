@@ -16,17 +16,15 @@ const Contact = () => {
     setLoading(true);
     setError("");
     setSuccess("");
+    const api_url = import.meta.env.VITE_API_URL;
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/contact",
-        {
-          firstName,
-          lastName,
-          email,
-          phone,
-          message,
-        }
-      );
+      const response = await axios.post(`${api_url}/contact`, {
+        firstName,
+        lastName,
+        email,
+        phone,
+        message,
+      });
 
       if (response?.data?.success) {
         setSuccess("Message sent successfully!");

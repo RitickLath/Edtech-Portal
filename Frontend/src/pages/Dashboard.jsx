@@ -17,10 +17,10 @@ const Dashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const role = localStorage.getItem("role");
-
+    const api_url = import.meta.env.VITE_API_URL;
     if (token) {
       const response = axios
-        .get("http://localhost:3000/api/v1/userDetails", {
+        .get(`${api_url}/userDetails`, {
           headers: { Authorization: `${token} ${role}` },
         })
         .then((response) => {

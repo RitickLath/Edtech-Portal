@@ -9,9 +9,8 @@ const Course = () => {
   useEffect(() => {
     const getAllCourses = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/courses"
-        );
+        const api_url = import.meta.env.VITE_API_URL;
+        const response = await axios.get(`${api_url}/courses`);
 
         if (response?.data?.success) {
           setCourses(response?.data?.courses);

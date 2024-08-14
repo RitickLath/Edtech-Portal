@@ -19,17 +19,14 @@ const Verification = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const submittedOtp = otp.join("");
-
+    const api_url = import.meta.env.VITE_API_URL;
     // Replace the URL with your API endpoint
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/verfication",
-        {
-          otp: submittedOtp,
-          id: localStorage.getItem("id"),
-          role: localStorage.getItem("role"),
-        }
-      );
+      const response = await axios.post(`${api_url}/verfication`, {
+        otp: submittedOtp,
+        id: localStorage.getItem("id"),
+        role: localStorage.getItem("role"),
+      });
 
       if (response.data.success) {
         navigate("/dashboard");

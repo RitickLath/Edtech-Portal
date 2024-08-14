@@ -31,7 +31,8 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/v1/signup", {
+      const api_url = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${api_url}/signup`, {
         firstName,
         lastName,
         email,
@@ -44,7 +45,7 @@ const Signup = () => {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
         localStorage.setItem("role", response?.data?.role);
         localStorage.setItem("id", response?.data?.id);
-        
+
         setSuccess(response?.data?.message || "Sign up successful");
         navigate("/verification");
       } else {

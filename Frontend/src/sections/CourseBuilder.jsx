@@ -43,14 +43,12 @@ const CourseBuilder = ({ page, setpage, section, setSection, title }) => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/addLectures",
-        {
-          id: localStorage.getItem("id"),
-          title,
-          lecture: sec,
-        }
-      );
+      const api_url = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${api_url}/addLectures`, {
+        id: localStorage.getItem("id"),
+        title,
+        lecture: sec,
+      });
 
       if (response.data.success) {
         alert("Lecture added successfully!");

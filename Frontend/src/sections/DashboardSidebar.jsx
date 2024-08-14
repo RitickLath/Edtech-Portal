@@ -10,7 +10,7 @@ const DashboardSidebar = () => {
   const [ActiveDiv, setActiveDiv] = useState(1);
   const navigate = useNavigate();
   const location = useLocation();
-
+  
   useEffect(() => {
     if (location.pathname == "/dashboard") {
       setActiveDiv(1);
