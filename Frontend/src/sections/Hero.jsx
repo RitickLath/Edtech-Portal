@@ -8,7 +8,7 @@ const Hero = ({ btn1, btn2, heading, neonHeading, paragraph }) => {
           {neonHeading}
         </span>
       </h1>
-      <h1 className="sm:text-lg md:text-xl pt-4 sm:px-7 font-medium text-[#DBDDEA] lg:px-24 text-left">
+      <h1 className="sm:text-lg md:text-xl pt-4 sm:px-7 text-[#DBDDEA] lg:px-24 text-left">
         {paragraph}
       </h1>
       <div className="mt-10 w-full flex justify-center space-x-3">
