@@ -37,7 +37,7 @@ const Home = () => {
           <video loop autoPlay>
             <source
               type="video/mp4"
-              src="https://res.cloudinary.com/drgztn5ek/video/upload/v1723647828/9049-360_pzvcgp.mp4"
+              src="/public/vid.mp4"
               width="100%"
               height="100%"
             />
