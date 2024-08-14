@@ -10,7 +10,7 @@ connect();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/v1", BasicRouter);
+app.use("", BasicRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
