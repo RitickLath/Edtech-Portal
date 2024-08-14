@@ -35,9 +35,9 @@ const Navbar = () => {
           {localStorage.getItem("role") !== "Instructor" && (
             <Link to="/">Home</Link>
           )}
-          {localStorage.getItem("role") !== "Instructor" && (
+          {/* {localStorage.getItem("role") !== "Instructor" && (
             <Link to="about">About Us</Link>
-          )}
+          )} */}
           {localStorage.getItem("role") !== "Instructor" && (
             <Link to="/course">Courses</Link>
           )}
@@ -93,9 +93,9 @@ const Navbar = () => {
           <Link to="/" onClick={closeSidebar}>
             Home
           </Link>
-          <Link to="/about" onClick={closeSidebar}>
+          {/* <Link to="/about" onClick={closeSidebar}>
             About Us
-          </Link>
+          </Link> */}
           <Link to="/course" onClick={closeSidebar}>
             Courses
           </Link>

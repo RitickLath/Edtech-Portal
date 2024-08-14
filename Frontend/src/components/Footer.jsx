@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="w-full bg-[#000814] text-white ">
+    <div className="w-full bg-[#000814] text-white pb-5 ">
       <div className="w-full bg-[#000814] text-white px-10 lg:px-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
         <div>
           <FooterPart heading="Company" arrayname={company} />

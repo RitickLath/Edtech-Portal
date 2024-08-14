@@ -28,7 +28,7 @@ const MainLayout = () => {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
+          {/* <Route path="/about" element={<About />} /> */}
           <Route path="/course" element={<Course />} />
           <Route path="/course/:id" element={<CourseInfo />} />
 
