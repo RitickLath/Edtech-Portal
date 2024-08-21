@@ -1,7 +1,7 @@
 const CACHE_NAME = "my-app-cache-v1";
 const urlsToCache = [
-  "/index.html",
-  "/offline.html", // Fallback page for offline use
+  "https://edtech-portal.vercel.app/index.html",
+  "https://edtech-portal.vercel.app/offline.html", // Fallback page for offline use
 ];
 
 // Install Service Worker
